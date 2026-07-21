@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#0E8A7D" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<title>Dad's Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#FAF8F3;--card:#fff;--ink:#1F2733;--muted:#6B7280;--line:#E8E3D8;--teal:#0E8A7D;--tealD:#0A6C61;--low:#1E9E6A;--med:#D9922A;--high:#D9534F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Mukta',system-ui,sans-serif;font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:680px;margin:0 auto;padding:0 14px calc(50px + env(safe-area-inset-bottom))}
+header{padding:calc(18px + env(safe-area-inset-top)) 4px 4px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px}
+h1{font-family:'Poppins';margin:0;font-size:25px}
+.sub{color:var(--muted);font-size:13px;margin-top:2px}.fresh{font-size:12px;color:var(--muted);margin-top:2px}
+.status{font-family:'Poppins';font-weight:600;font-size:12px;padding:5px 11px;border-radius:999px;white-space:nowrap}
+.status.OPEN{color:var(--low);background:#E7F5EE}.status.CLOSED{color:var(--muted);background:#EFEAE0}
+.demobar{background:#D9534F;color:#fff;text-align:center;font-family:'Poppins';font-weight:700;font-size:13px;padding:11px 14px;border-radius:12px;margin:12px 0 4px}
+.offbar{background:#D9922A;color:#fff;text-align:center;font-weight:600;font-size:13px;padding:9px 12px;border-radius:12px;margin:10px 0 4px}
+.bar{display:flex;gap:10px;align-items:center;margin:10px 0 6px}
+#install{display:none;background:var(--teal);color:#fff;border:none;border-radius:10px;padding:8px 13px;font-family:'Poppins';font-weight:600;font-size:13px;cursor:pointer}
+.refresh{margin-left:auto;background:none;border:1px solid var(--line);border-radius:10px;padding:7px 13px;font-family:'Poppins';font-weight:600;font-size:13px;color:var(--ink);cursor:pointer}
+.hint{font-size:12px;color:var(--muted);margin:2px 4px 8px}
+.tabs{display:flex;gap:6px;background:#EFEADF;border-radius:12px;padding:5px;margin:8px 0 10px}
+.tab{flex:1;border:none;background:transparent;color:var(--muted);font-family:'Poppins';font-weight:600;font-size:13px;padding:9px 6px;border-radius:9px;cursor:pointer;text-align:center;line-height:1.2}
+.tab .tsub{display:block;font-size:10px;font-weight:600;opacity:.7;margin-top:1px}
+.tab.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.tab .cnt{color:var(--teal)}
+.caps{display:flex;gap:7px;margin:0 0 10px;flex-wrap:wrap}
+.cap{border:1px solid var(--line);background:var(--card);color:var(--muted);font-family:'Poppins';font-weight:600;font-size:12px;padding:6px 13px;border-radius:999px;cursor:pointer}
+.cap.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tier.ss{color:#fff;background:var(--high)}
+.tier.s{color:var(--high);background:#FBE7E6}
+.tier.e{color:var(--med);background:#FBF1DE}
+
+/* compact list */
+.list{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.row{display:flex;align-items:center;gap:11px;padding:13px 14px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s}
+.row:last-child{border-bottom:none}
+.row:active{background:var(--paper)}
+.dot{width:11px;height:11px;border-radius:50%;flex:0 0 auto}
+.dot.low{background:var(--low)}.dot.med{background:var(--med)}.dot.high{background:var(--high)}
+.rmain{flex:1;min-width:0}
+.rname{font-family:'Poppins';font-weight:600;font-size:16px;line-height:1.15;display:flex;align-items:center;gap:6px}
+.rname .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rtk{font-size:12px;color:var(--muted)}
+.rconf{font-family:'Poppins';font-weight:700;font-size:16px;color:var(--tealD);flex:0 0 auto;min-width:44px;text-align:right}
+.tier{font-family:'Poppins';font-weight:600;font-size:11px;padding:5px 9px;border-radius:999px;flex:0 0 auto;white-space:nowrap;min-width:78px;text-align:center}
+.tier.sb{color:#fff;background:var(--low)}
+.tier.b{color:var(--tealD);background:#E1F0ED}
+.tier.w{color:var(--med);background:#FBF1DE}
+.new{font-size:10px;background:var(--teal);color:#fff;border-radius:5px;padding:1px 5px;flex:0 0 auto}
+.chev{color:var(--muted);font-size:18px;flex:0 0 auto}
+.colhdr{display:flex;justify-content:space-between;padding:6px 6px 8px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+.empty{text-align:center;color:var(--muted);padding:44px 20px;background:var(--card);border:1px dashed var(--line);border-radius:16px}
+.empty .big{font-family:'Poppins';font-size:19px;color:var(--ink);margin-bottom:6px}
+.empty code{background:var(--paper);padding:2px 7px;border-radius:6px;font-size:14px}
+.foot{margin-top:18px;padding:15px 17px;border-radius:16px;background:#FBF6EC;border:1px solid var(--line);font-size:13px;color:var(--muted);line-height:1.6}.foot b{color:var(--ink)}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(20,26,38,.5);display:none;align-items:flex-end;justify-content:center;z-index:50}
+.modal.show{display:flex}
+.sheet{background:var(--paper);width:100%;max-width:680px;max-height:88vh;overflow-y:auto;border-radius:22px 22px 0 0;padding:8px 18px calc(26px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.18)}
+@media(min-width:560px){.modal{align-items:center}.sheet{border-radius:22px;max-height:82vh}}
+.grip{width:42px;height:5px;border-radius:3px;background:var(--line);margin:8px auto 6px}
+.mhead{display:flex;align-items:center;gap:11px;padding:4px 0 6px}
+.mhead .mnm{font-family:'Poppins';font-weight:700;font-size:22px;flex:1;min-width:0}
+.mhead .mconf{text-align:center}.mconf .v{font-family:'Poppins';font-weight:700;font-size:22px;color:var(--tealD);line-height:1}.mconf .l{font-size:10px;color:var(--muted);text-transform:uppercase}
+.mtk{font-size:14px;color:var(--muted);margin-bottom:8px}
+.mtk .up{color:var(--low);font-weight:600}.mtk .dn{color:var(--high);font-weight:600}
+.why{font-size:16px;margin:8px 0}
+.news{font-size:14px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-bottom:8px}.news a{color:var(--tealD);text-decoration:none}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{font-size:12px;color:var(--muted);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.gc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.gc .k{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.gc .v{display:block;font-weight:700;font-size:17px;margin-top:2px}
+.mmeta{font-size:14px;color:#4B5563;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:10px}.mmeta b{color:var(--ink)}
+.mact{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.chart{background:var(--teal);color:#fff;text-decoration:none;font-family:'Poppins';font-weight:600;font-size:15px;padding:12px 18px;border-radius:12px}
+.close{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-family:'Poppins';font-weight:600;cursor:pointer}
+.youdecide{font-size:13px;color:var(--muted)}
+.warn{font-size:14px;color:var(--med);font-weight:600;margin:6px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="demobar"></div>
+  <div id="offbar"></div>
+  <header>
+    <div>
+      <h1>Dad's Desk</h1>
+      <div class="sub" id="sub">Loading…</div>
+      <div class="fresh" id="fresh"></div>
+    </div>
+    <span class="status CLOSED" id="status">—</span>
+  </header>
+  <div class="bar">
+    <button id="install">Install app</button>
+    <button class="refresh" id="refresh">↻ Refresh</button>
+  </div>
+  <div class="hint">Tap any stock for the full plan. Confidence = how many strategies agree, not a promise.</div>
+  <div class="tabs" id="viewtabs"></div>
+  <div class="tabs" id="tftabs"></div>
+  <div class="caps" id="captabs"></div>
+  <div class="colhdr" id="colhdr" style="display:none"><span>Stock</span><span>Confidence · Signal</span></div>
+  <main id="list"></main>
+</div>
+
+<div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const RL = {low:"Steady mover", med:"Moves a fair bit", high:"Swings a lot"};
+const inr = (n) => "₹"+Number(n).toLocaleString("en-IN");
+const tierClass = (t) => ({"Strong Buy":"sb","Buy":"b","Watch":"w","Emerging":"e","Sell":"s","Strong Sell":"ss"}[t] || "w");
+let STOCKS = [];
+
+function rowHTML(s, i){
+  const isNew = s.is_new ? `<span class="new">NEW</span>` : "";
+  return `<div class="row" data-i="${i}">
+    <span class="dot ${esc(s.risk)}"></span>
+    <div class="rmain">
+      <div class="rname"><span class="nm">${esc(s.name)}</span>${isNew}</div>
+      <div class="rtk">${esc(s.tv)} · ${inr(s.price)}</div>
+    </div>
+    <span class="rconf">${s.confidence}%</span>
+    <span class="tier ${tierClass(s.tier)}">${esc(s.tier)}</span>
+    <span class="chev">›</span>
+  </div>`;
+}
+
+function detailHTML(s){
+  const chips = (s.reasons||[]).map(k=>`<span class="chip">${esc(k)}</span>`).join("");
+  const news = s.news ? `<div class="news">📰 <a href="${esc(s.news.url)}" target="_blank" rel="noopener">${esc(s.news.title)}</a></div>` : "";
+  const warn = s.extended ? `<div class="warn">Strong but a bit stretched — could dip first.</div>` : "";
+  const chg = Number(s.change)>=0 ? "up" : "dn";
+  return `<div class="grip"></div>
+    <div class="mhead">
+      <span class="dot ${esc(s.risk)}" style="width:14px;height:14px"></span>
+      <div class="mnm">${esc(s.name)}</div>
+      <div class="mconf"><div class="v">${s.confidence}%</div><div class="l">agreement</div></div>
+    </div>
+    <div class="mtk">${esc(s.tv)} · ${inr(s.price)} <span class="${chg}">${Number(s.change)>=0?"+":""}${s.change}%</span> · <b>${esc(s.tier)}</b></div>
+    <p class="why">${esc(s.explain)}</p>
+    ${news}
+    ${warn}
+    <div class="chips">${chips}</div>
+    <div class="grid">
+      <div class="gc"><span class="k">Risk</span><span class="v">${(RL[s.risk]||s.risk)}</span></div>
+      <div class="gc"><span class="k">Strength score</span><span class="v">${s.score}</span></div>
+      <div class="gc"><span class="k">Reference level up</span><span class="v">${inr(s.target_ref)}</span></div>
+      <div class="gc"><span class="k">Safety line</span><span class="v">${inr(s.stop_ref)}</span></div>
+      <div class="gc"><span class="k">Rel. strength rank</span><span class="v">${s.rs_percentile!=null?("top "+(100-s.rs_percentile)+"%"):"—"}</span></div>
+      <div class="gc"><span class="k">52-wk position</span><span class="v">${s.w52_pos!=null?(s.w52_pos+"%"):"—"}</span></div>
+      <div class="gc"><span class="k">Money Flow (MFI)</span><span class="v">${s.mfi!=null?s.mfi:"—"}</span></div>
+      <div class="gc"><span class="k">Beta vs Nifty</span><span class="v">${s.beta!=null?s.beta:"—"}</span></div>
+    </div>
+    <div class="mmeta"><b>Holding:</b> ${esc(s.holding)}<br><b>Movement:</b> ${esc(s.expected)}</div>
+    <div class="mact">
+      <a class="chart" href="${esc(s.chart)}" target="_blank" rel="noopener">See the chart</a>
+      <button class="close" id="mclose">Close</button>
+      <span class="youdecide">You decide how much &amp; when to sell</span>
+    </div>`;
+}
+
+function openModal(i){
+  const s = STOCKS[i]; if(!s) return;
+  $("sheet").innerHTML = detailHTML(s);
+  $("modal").classList.add("show");
+  $("mclose").addEventListener("click", closeModal);
+}
+function closeModal(){ $("modal").classList.remove("show"); }
+$("modal").addEventListener("click", (e)=>{ if(e.target.id==="modal") closeModal(); });
+document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeModal(); });
+
+let COLUMNS = {}, VIEW = "top", TF = "daily", CAP = "all";
+const TFS  = [["daily","Daily","2–3 wks"],["weekly","Weekly","2–3 mo"],["monthly","Monthly","2–3 yr"]];
+const VIEWS = [["top","⭐ Top"],["buy","Buy"],["early","Early climb"],["sell","Sell / weak"]];
+const CAPS = [["all","All"],["large","Large"],["mid","Mid"],["small","Small"]];
+
+function filtered(){
+  const all = (COLUMNS[TF] && COLUMNS[TF].stocks) || [];
+  let list = CAP==="all" ? all : all.filter(s=>s.cap===CAP);
+  if(VIEW==="top"){
+    list = list.filter(s=>s.kind==="buy").sort((a,b)=>b.confidence-a.confidence).slice(0,15);
+  } else {
+    list = list.filter(s=>s.kind===VIEW).sort((a,b)=>b.confidence-a.confidence);
+  }
+  return list;
+}
+
+function renderList(){
+  STOCKS = filtered();
+  const list = $("list");
+  if(STOCKS.length===0){
+    $("colhdr").style.display="none";
+    const msg = VIEW==="top" ? "No standout picks on this timeframe/cap yet."
+      : VIEW==="early" ? "No early reversals here right now — that's normal."
+      : VIEW==="sell" ? "Nothing flashing weakness here right now."
+      : "Nothing strong enough here right now.";
+    list.innerHTML = `<div class="empty"><div class="big">Nothing to show</div>${msg}</div>`;
+    return;
+  }
+  $("colhdr").style.display="flex";
+  list.innerHTML = `<div class="list">${STOCKS.map(rowHTML).join("")}</div>`;
+  list.querySelectorAll(".row").forEach(r=> r.addEventListener("click", ()=> openModal(Number(r.dataset.i))));
+}
+
+function seg(hostId, items, active, onPick, counts){
+  $(hostId).innerHTML = items.map(([k,label,sub])=>{
+    const c = counts ? ` <span class="cnt">${counts[k]||0}</span>` : "";
+    const s = sub ? `<span class="tsub">${sub}</span>` : "";
+    return `<button class="tab ${k===active?'on':''}" data-k="${k}">${label}${c}${s}</button>`;
+  }).join("");
+  $(hostId).querySelectorAll(".tab").forEach(b=> b.addEventListener("click", ()=>onPick(b.dataset.k)));
+}
+
+function renderControls(){
+  const col = COLUMNS[TF] || {stocks:[]};
+  const inCap = (col.stocks||[]).filter(s=> CAP==="all" || s.cap===CAP);
+  const vc = {top:inCap.filter(s=>s.kind==="buy").length, buy:inCap.filter(s=>s.kind==="buy").length,
+              early:inCap.filter(s=>s.kind==="early").length, sell:inCap.filter(s=>s.kind==="sell").length};
+  seg("viewtabs", VIEWS, VIEW, k=>{VIEW=k; renderControls(); renderList(); window.scrollTo(0,0);}, vc);
+  seg("tftabs", TFS, TF, k=>{TF=k; renderControls(); renderList(); window.scrollTo(0,0);});
+  $("captabs").innerHTML = CAPS.map(([k,l])=>`<button class="cap ${k===CAP?'on':''}" data-k="${k}">${l}</button>`).join("");
+  $("captabs").querySelectorAll(".cap").forEach(b=> b.addEventListener("click", ()=>{CAP=b.dataset.k; renderControls(); renderList();}));
+}
+
+let LAST = null;
+
+// live market clock — computed in the browser, correct regardless of when the data was scanned
+function istNow(){
+  const now = new Date();
+  return new Date(now.getTime() + now.getTimezoneOffset()*60000 + 5.5*3600000);
+}
+function marketOpenLive(){
+  const t = istNow(), day = t.getDay();
+  if(day===0 || day===6) return false;
+  const mins = t.getHours()*60 + t.getMinutes();
+  return mins >= (9*60+15) && mins <= (15*60+30);
+}
+function ago(iso){
+  if(!iso) return "";
+  const mins = Math.floor((Date.now() - new Date(iso).getTime())/60000);
+  if(mins < 1) return "just now";
+  if(mins < 60) return mins + " min ago";
+  const hrs = Math.floor(mins/60);
+  if(hrs < 24) return hrs + " hr ago";
+  return Math.floor(hrs/24) + " day(s) ago";
+}
+
+function applyClock(){
+  const open = marketOpenLive();
+  const st = $("status");
+  st.textContent = "Market " + (open ? "OPEN" : "CLOSED");
+  st.className = "status " + (open ? "OPEN" : "CLOSED");
+  if(LAST){
+    const age = ago(LAST.updated);
+    $("fresh").textContent = `${LAST.freshness||""} · data ${age}`;
+    const mins = LAST.updated ? Math.floor((Date.now()-new Date(LAST.updated).getTime())/60000) : 9999;
+    if(open && mins > 30){
+      $("offbar").innerHTML = `<div class="offbar">⚠️ Data is ${age} old — the scanner isn't updating live. It needs the scheduled scan+deploy running (see setup).</div>`;
+    }
+  }
+}
+
+function render(d){
+  LAST = d;
+  COLUMNS = d.columns || {};
+  const bd = (COLUMNS.daily||{}).breadth || 0;
+  $("sub").textContent = `${d.updated_h} · ${d.scanned||0} stocks · breadth ${bd}% up`;
+  $("demobar").innerHTML = d.demo ? `<div class="demobar">⚠️ DEMO — FAKE, RANDOM NUMBERS. Run the engine for real data.</div>` : "";
+  applyClock();
+  renderControls();
+  renderList();
+}
+
+async function load(){
+  try{
+    const res = await fetch("data.json?ts="+Date.now(), {cache:"no-store"});
+    if(!res.ok) throw new Error("no data");
+    render(await res.json());
+    $("offbar").innerHTML = "";
+  }catch(e){
+    $("offbar").innerHTML = `<div class="offbar">Showing last saved list — couldn't reach fresh data.</div>`;
+    if(!$("list").innerHTML){
+      $("list").innerHTML = `<div class="empty"><div class="big">No data yet</div>
+        Run <code>python scan.py --once</code> on the computer, then Refresh.</div>`;
+      $("sub").textContent = "Waiting for the engine…";
+    }
+  }
+}
+
+$("refresh").addEventListener("click", load);
+setInterval(load, 5*60*1000);
+setInterval(applyClock, 60*1000);   // keep OPEN/CLOSED + data-age live every minute
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) load(); });
+
+let deferred;
+window.addEventListener("beforeinstallprompt",(e)=>{ e.preventDefault(); deferred=e; $("install").style.display="inline-block"; });
+$("install").addEventListener("click", async ()=>{ if(!deferred) return; deferred.prompt(); await deferred.userChoice; deferred=null; $("install").style.display="none"; });
+
+if("serviceWorker" in navigator){
+  window.addEventListener("load", ()=> navigator.serviceWorker.register("sw.js").catch(()=>{}));
+}
+load();
+</script>
+</body>
+</html>

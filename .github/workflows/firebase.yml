@@ -1,0 +1,39 @@
+name: Dad's Desk — scan & deploy to Firebase
+
+# Runs on GitHub's servers, scans the market, and pushes fresh data to your
+# Firebase-hosted PWA. No computer of yours needs to stay on.
+# Times are UTC. 03:45-10:00 UTC ≈ 09:15-15:30 IST (market hours).
+on:
+  schedule:
+    - cron: "*/15 3-10 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  scan-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python deps
+        run: pip install -r requirements.txt
+
+      - name: Scan the market (writes pwa/data.json)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          DADSDESK_LANG: ${{ vars.DADSDESK_LANG }}
+        run: python scan.py --once
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Deploy to Firebase Hosting
+        run: firebase deploy --only hosting --non-interactive --token "${{ secrets.FIREBASE_TOKEN }}"
