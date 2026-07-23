@@ -116,6 +116,7 @@ h1{font-family:'Poppins';margin:0;font-size:25px}
 
 <div class="modal" id="modal"><div class="sheet" id="sheet"></div></div>
 
+<script src="app-config.js"></script>
 <script>
 const $ = (id) => document.getElementById(id);
 const esc = (s) => String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -300,7 +301,50 @@ async function load(){
   }
 }
 
-$("refresh").addEventListener("click", load);
+// Refresh: if a trigger URL is configured, start a REAL scan, then poll for
+// the new data. Otherwise just re-download whatever is published.
+let polling = null;
+async function doRefresh(){
+  const btn = $("refresh");
+  const url = (window.DADSDESK_TRIGGER_URL || "").trim();
+  await load();
+  if(!url) return;
+
+  const before = LAST ? LAST.updated : null;
+  btn.disabled = true; btn.textContent = "Scanning…";
+  $("offbar").innerHTML = `<div class="offbar">Scan started — new picks usually land in 1–3 minutes.</div>`;
+  try{
+    const r = await fetch(url, {method:"POST"});
+    const j = await r.json().catch(()=>({}));
+    if(!r.ok || j.ok === false){
+      $("offbar").innerHTML = `<div class="offbar">Couldn't start the scan${j.status?` (${j.status})`:""}. Showing the latest published data.</div>`;
+      btn.disabled = false; btn.textContent = "↻ Refresh";
+      return;
+    }
+  }catch(e){
+    $("offbar").innerHTML = `<div class="offbar">Couldn't reach the refresh service. Showing the latest published data.</div>`;
+    btn.disabled = false; btn.textContent = "↻ Refresh";
+    return;
+  }
+
+  // poll every 20s for up to 5 minutes, until the timestamp changes
+  clearInterval(polling);
+  let tries = 0;
+  polling = setInterval(async ()=>{
+    tries++;
+    await load();
+    const changed = LAST && LAST.updated && LAST.updated !== before;
+    if(changed || tries >= 15){
+      clearInterval(polling); polling = null;
+      btn.disabled = false; btn.textContent = "↻ Refresh";
+      $("offbar").innerHTML = changed
+        ? `<div class="offbar" style="background:#1E9E6A">Updated with a fresh scan.</div>`
+        : `<div class="offbar">Still working — pull down again in a minute.</div>`;
+      setTimeout(()=>{ if(!polling) $("offbar").innerHTML=""; }, 6000);
+    }
+  }, 20000);
+}
+$("refresh").addEventListener("click", doRefresh);
 setInterval(load, 5*60*1000);
 setInterval(applyClock, 60*1000);   // keep OPEN/CLOSED + data-age live every minute
 document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) load(); });

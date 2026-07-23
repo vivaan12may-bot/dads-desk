@@ -1,5 +1,5 @@
 // Dad's Desk service worker — network-first so the app always updates.
-const CACHE = "dadsdesk-v3";
+const CACHE = "dadsdesk-v4";
 const SHELL = ["./manifest.webmanifest", "./icon-192.png", "./icon-512.png"];
 
 self.addEventListener("install", (e) => {
@@ -19,7 +19,7 @@ self.addEventListener("fetch", (e) => {
   const isData = url.pathname.endsWith("data.json");
 
   // page + data + sw => network-first (fall back to cache offline)
-  if (isPage || isData || url.pathname.endsWith("sw.js")) {
+  if (isPage || isData || url.pathname.endsWith("sw.js") || url.pathname.endsWith("app-config.js")) {
     e.respondWith(
       fetch(e.request).then((res) => {
         const copy = res.clone();
