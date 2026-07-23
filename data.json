@@ -1,6 +1,6 @@
 {
-  "updated": "2026-07-23T16:04:52.870653+05:30",
-  "updated_h": "Thu, 23 Jul 2026 · 16:04 IST",
+  "updated": "2026-07-23T17:43:45.697681+05:30",
+  "updated_h": "Thu, 23 Jul 2026 · 17:43 IST",
   "market": "CLOSED",
   "demo": false,
   "freshness": "Live · ~15 min delayed (Yahoo)",
@@ -177,11 +177,11 @@
           "w52_dist": 0.8,
           "rs_percentile": 92,
           "atr_pct": 2.1,
-          "explain": "Federalbnk looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.3% and 6 kinds of signals line up together. In the news: Federal Bank Shares Rally 7% After Q1 Profit Jumps 36%, NII Surges 26%; Asset Quality Improves - HDFCSky.",
+          "explain": "Federalbnk looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.3% and 6 kinds of signals line up together. In the news: Sensex, Nifty extend losses; HDFC Bank, RIL drag, broader market outperforms - Business Today.",
           "news": {
-            "title": "Federal Bank Shares Rally 7% After Q1 Profit Jumps 36%, NII Surges 26%; Asset Quality Improves - HDFCSky",
-            "url": "https://hdfcsky.com/news/federal-bank-share-price-jumps-7percent-after-strong-q1-results",
-            "blurb": "**Mumbai, July 17:** Federal Bank share price gained as much as 7% on Friday after the Kochi-based private sector lender reported robust growth in net profit and net interest income (NII), lower provisions and an improvement in asset quality. The Kochi-based lender reported a 36.5% year-on-year incr"
+            "title": "Sensex, Nifty extend losses; HDFC Bank, RIL drag, broader market outperforms - Business Today",
+            "url": "https://www.businesstoday.in/markets/stocks/story/sensex-nifty-extend-losses-hdfc-bank-ril-drag-broader-market-outperforms-544258-2026-07-21",
+            "blurb": "## Despite the weakness in benchmark indices, the broader market moved higher. Indian equity benchmarks extended their losing run for the second straight session on Tuesday amid a mixed sectoral performance, with heavyweight stocks such as HDFC Bank Ltd and Reliance Industries Ltd (RIL) weighing on "
           },
           "chart": "https://www.tradingview.com/chart/?symbol=NSE:FEDERALBNK"
         },
@@ -342,11 +342,11 @@
           "w52_dist": 1.4,
           "rs_percentile": 94,
           "atr_pct": 2.5,
-          "explain": "Tvsmotor looks strong right now because its price sits above its main averages, and it broke past its recent high, and its momentum is turning up. It moved +0.3% and 5 kinds of signals line up together. In the news: TVS Motor stock spikes 6% on posting highest-ever quarterly profit in Q1.",
+          "explain": "Tvsmotor looks strong right now because its price sits above its main averages, and it broke past its recent high, and its momentum is turning up. It moved +0.3% and 5 kinds of signals line up together. In the news: TVS Motor Launches Orbiter EV In Nepal; Shares Rise 0.31%.",
           "news": {
-            "title": "TVS Motor stock spikes 6% on posting highest-ever quarterly profit in Q1",
-            "url": "https://www.business-standard.com/markets/news/tvs-motor-q1-results-stock-spikes-6-on-posting-highest-ever-quarterly-profit-in-q1-126072100713_1.html",
-            "blurb": "Home / Markets / News / TVS Motor stock spikes 6% on posting highest-ever quarterly profit in Q1. # TVS Motor stock spikes 6% on posting highest-ever quarterly profit in Q1. Image 6: TVS Motor, TVS Motor Q1 results). **TVS Motor Q1 Results:** Shares of auto maker TVS Motor Company switched to the fa"
+            "title": "TVS Motor Launches Orbiter EV In Nepal; Shares Rise 0.31%",
+            "url": "https://hdfcsky.com/news/tvs-motor-launches-orbiter-ev-in-nepal-shares-rise-0-31-percent",
+            "blurb": "TVS Motor launched its Orbiter electric scooter in Nepal with a 158 km IDC range, while shares traded 0.31% higher at ₹3,919.60. **Mumbai July, 23:** TVS Motor Company Limited has launched its TVS Orbiter electric scooter in Nepal, widening its electric two-wheeler offering in the country as it look"
           },
           "chart": "https://www.tradingview.com/chart/?symbol=NSE:TVSMOTOR"
         },
@@ -396,11 +396,11 @@
           "w52_dist": 0.4,
           "rs_percentile": 96,
           "atr_pct": 2.7,
-          "explain": "Torntpharm looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.6% and 4 kinds of signals line up together. In the news: Torrent Pharma Revenue Hits ₹13,980 Crore, Dividend Declared.",
+          "explain": "Torntpharm looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.6% and 4 kinds of signals line up together. In the news: Tata Consultancy Services Stock Update: Shares Edge Lower Amidst Sector Headwinds - LatestLY.",
           "news": {
-            "title": "Torrent Pharma Revenue Hits ₹13,980 Crore, Dividend Declared",
-            "url": "https://www.whalesbook.com/news/English/healthcarebiotech/Torrent-Pharma-Revenue-Hits-indian-rupee13980-Crore-Dividend-Declared/6a5df648fe1c9287f476e8e3",
-            "blurb": "Torrent Pharma shares rose 2.18% as annual revenue reached ₹13980 crore. Explore the company's dividend payouts, multi-year profit growth, and investor"
+            "title": "Tata Consultancy Services Stock Update: Shares Edge Lower Amidst Sector Headwinds - LatestLY",
+            "url": "https://www.latestly.com/business/tata-consultancy-services-stock-update-shares-edge-lower-amidst-sector-headwinds-7528164.html/amp",
+            "blurb": "## Tata Consultancy Services (TCS) share price edges lower to ₹2,200.90, down -0.34%, as investors weigh its latest AI report against broader Indian IT sector caution and recent Q1 FY27 results. Tata Consultancy Services (TCS) shares are trading marginally lower in today's intraday session, currentl"
           },
           "chart": "https://www.tradingview.com/chart/?symbol=NSE:TORNTPHARM"
         },
@@ -4203,7 +4203,7 @@
           "w52_dist": 0.8,
           "rs_percentile": 90,
           "atr_pct": 4.4,
-          "explain": "Federalbnk looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.3% and 6 kinds of signals line up together. In the news: Federal Bank Shares Rally 7% After Q1 Profit Jumps 36%, NII Surges 26%; Asset Quality Improves - HDFCSky.",
+          "explain": "Federalbnk looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.3% and 6 kinds of signals line up together. In the news: Sensex, Nifty extend losses; HDFC Bank, RIL drag, broader market outperforms - Business Today.",
           "news": null,
           "chart": "https://www.tradingview.com/chart/?symbol=NSE:FEDERALBNK"
         },
@@ -4359,7 +4359,7 @@
           "w52_dist": 0.4,
           "rs_percentile": 82,
           "atr_pct": 4.8,
-          "explain": "Torntpharm looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.6% and 4 kinds of signals line up together. In the news: Torrent Pharma Revenue Hits ₹13,980 Crore, Dividend Declared.",
+          "explain": "Torntpharm looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.6% and 4 kinds of signals line up together. In the news: Tata Consultancy Services Stock Update: Shares Edge Lower Amidst Sector Headwinds - LatestLY.",
           "news": null,
           "chart": "https://www.tradingview.com/chart/?symbol=NSE:TORNTPHARM"
         },
@@ -4965,7 +4965,7 @@
           "w52_dist": 1.4,
           "rs_percentile": 53,
           "atr_pct": 5.8,
-          "explain": "Tvsmotor looks strong right now because its price sits above its main averages, and it broke past its recent high, and its momentum is turning up. It moved +0.3% and 5 kinds of signals line up together. In the news: TVS Motor stock spikes 6% on posting highest-ever quarterly profit in Q1.",
+          "explain": "Tvsmotor looks strong right now because its price sits above its main averages, and it broke past its recent high, and its momentum is turning up. It moved +0.3% and 5 kinds of signals line up together. In the news: TVS Motor Launches Orbiter EV In Nepal; Shares Rise 0.31%.",
           "news": null,
           "chart": "https://www.tradingview.com/chart/?symbol=NSE:TVSMOTOR"
         },
@@ -8187,7 +8187,7 @@
           "w52_dist": 0.4,
           "rs_percentile": 92,
           "atr_pct": 7.1,
-          "explain": "Torntpharm looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.6% and 4 kinds of signals line up together. In the news: Torrent Pharma Revenue Hits ₹13,980 Crore, Dividend Declared.",
+          "explain": "Torntpharm looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.6% and 4 kinds of signals line up together. In the news: Tata Consultancy Services Stock Update: Shares Edge Lower Amidst Sector Headwinds - LatestLY.",
           "news": null,
           "chart": "https://www.tradingview.com/chart/?symbol=NSE:TORNTPHARM"
         },
@@ -8456,7 +8456,7 @@
           "w52_dist": 0.8,
           "rs_percentile": 97,
           "atr_pct": 7.8,
-          "explain": "Federalbnk looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.3% and 6 kinds of signals line up together. In the news: Federal Bank Shares Rally 7% After Q1 Profit Jumps 36%, NII Surges 26%; Asset Quality Improves - HDFCSky.",
+          "explain": "Federalbnk looks strong right now because its price sits above its main averages, and its momentum is turning up, and it's outperforming the overall market. It moved +0.3% and 6 kinds of signals line up together. In the news: Sensex, Nifty extend losses; HDFC Bank, RIL drag, broader market outperforms - Business Today.",
           "news": null,
           "chart": "https://www.tradingview.com/chart/?symbol=NSE:FEDERALBNK"
         },
@@ -8869,7 +8869,7 @@
           "w52_dist": 1.4,
           "rs_percentile": 95,
           "atr_pct": 9.4,
-          "explain": "Tvsmotor looks strong right now because its price sits above its main averages, and it broke past its recent high, and its momentum is turning up. It moved +0.3% and 5 kinds of signals line up together. In the news: TVS Motor stock spikes 6% on posting highest-ever quarterly profit in Q1.",
+          "explain": "Tvsmotor looks strong right now because its price sits above its main averages, and it broke past its recent high, and its momentum is turning up. It moved +0.3% and 5 kinds of signals line up together. In the news: TVS Motor Launches Orbiter EV In Nepal; Shares Rise 0.31%.",
           "news": null,
           "chart": "https://www.tradingview.com/chart/?symbol=NSE:TVSMOTOR"
         },
